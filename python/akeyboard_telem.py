@@ -11,7 +11,7 @@ from callbackFunc import xbee_received
 import shared
 import traceback
 
-DEST_ADDR = '\x21\x02'
+DEST_ADDR = '\x10\x23'
 statedata_file_name = 'statedata.txt'
 dutycycle_file_name = 'dutycycle.txt'
 motordata_file_name = 'motordata.txt'

@@ -11,7 +11,7 @@ import shared
 from or_helpers import *
 from hall_helpers import *
 
-DEST_ADDR = '\x20\x52'
+DEST_ADDR = '\x10\x23'
 imudata_file_name = 'imudata.txt'
 statedata_file_name = 'statedata.txt'
 dutycycle_file_name = 'dutycycle.txt'

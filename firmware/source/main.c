@@ -38,6 +38,7 @@
 #include "uart_driver.h"
 #include "ppool.h"
 #include "carray.h"
+#include "sync_servo.h"
 
 #include <stdlib.h>
 
@@ -85,6 +86,7 @@ int main() {
     telemSetup();
     adcSetup();
     pidSetup();
+    servoSetup();
 
 
 
@@ -128,3 +130,5 @@ int main() {
     }
     return 0;
 }
+
+

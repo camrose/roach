@@ -4,29 +4,31 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <logicalFolder name="imageproc-lib"
-                     displayName="imageproc-lib"
+      <logicalFolder name="imageproc-lib-roach"
+                     displayName="imageproc-lib-roach"
                      projectFiles="true">
-        <itemPath>../../imageproc-lib/ams-enc.h</itemPath>
-        <itemPath>../../imageproc-lib/at86rf231_driver.h</itemPath>
-        <itemPath>../../imageproc-lib/blink.h</itemPath>
-        <itemPath>../../imageproc-lib/carray.h</itemPath>
-        <itemPath>../../imageproc-lib/delay.s</itemPath>
-        <itemPath>../../imageproc-lib/dfmem.h</itemPath>
-        <itemPath>../../imageproc-lib/mac_packet.h</itemPath>
-        <itemPath>../../imageproc-lib/payload.h</itemPath>
-        <itemPath>../../imageproc-lib/radio.h</itemPath>
-        <itemPath>../../imageproc-lib/sclock.h</itemPath>
-        <itemPath>../../imageproc-lib/tih.h</itemPath>
-        <itemPath>../../imageproc-lib/uart_driver.h</itemPath>
-        <itemPath>../../imageproc-lib/spi_controller.h</itemPath>
-        <itemPath>../../imageproc-lib/mpu6000.h</itemPath>
-        <itemPath>../../imageproc-lib/battery.h</itemPath>
-        <itemPath>../../imageproc-lib/ppool.h</itemPath>
-        <itemPath>../../imageproc-lib/queue.h</itemPath>
-        <itemPath>../../imageproc-lib/adc_pid.h</itemPath>
-        <itemPath>../../imageproc-lib/i2c_driver.h</itemPath>
-        <itemPath>../../imageproc-lib/init_default.h</itemPath>
+        <itemPath>../../imageproc-lib-roach/ams-enc.h</itemPath>
+        <itemPath>../../imageproc-lib-roach/at86rf231_driver.h</itemPath>
+        <itemPath>../../imageproc-lib-roach/blink.h</itemPath>
+        <itemPath>../../imageproc-lib-roach/carray.h</itemPath>
+        <itemPath>../../imageproc-lib-roach/delay.s</itemPath>
+        <itemPath>../../imageproc-lib-roach/dfmem.h</itemPath>
+        <itemPath>../../imageproc-lib-roach/mac_packet.h</itemPath>
+        <itemPath>../../imageproc-lib-roach/payload.h</itemPath>
+        <itemPath>../../imageproc-lib-roach/radio.h</itemPath>
+        <itemPath>../../imageproc-lib-roach/sclock.h</itemPath>
+        <itemPath>../../imageproc-lib-roach/tih.h</itemPath>
+        <itemPath>../../imageproc-lib-roach/uart_driver.h</itemPath>
+        <itemPath>../../imageproc-lib-roach/spi_controller.h</itemPath>
+        <itemPath>../../imageproc-lib-roach/mpu6000.h</itemPath>
+        <itemPath>../../imageproc-lib-roach/battery.h</itemPath>
+        <itemPath>../../imageproc-lib-roach/ppool.h</itemPath>
+        <itemPath>../../imageproc-lib-roach/queue.h</itemPath>
+        <itemPath>../../imageproc-lib-roach/adc_pid.h</itemPath>
+        <itemPath>../../imageproc-lib-roach/i2c_driver.h</itemPath>
+        <itemPath>../../imageproc-lib-roach/init_default.h</itemPath>
+        <itemPath>../../imageproc-lib-roach/bams.h</itemPath>
+        <itemPath>../../imageproc-lib-roach/quat.h</itemPath>
       </logicalFolder>
       <logicalFolder name="lib" displayName="lib" projectFiles="true">
         <itemPath>../lib/cmd_const.h</itemPath>
@@ -38,6 +40,8 @@
         <itemPath>../lib/tests.h</itemPath>
         <itemPath>../lib/telem.h</itemPath>
         <itemPath>../lib/vr-telem.h</itemPath>
+        <itemPath>../lib/sync_servo.h</itemPath>
+        <itemPath>../lib/attitude.h</itemPath>
       </logicalFolder>
       <itemPath>source/cmd.h</itemPath>
       <itemPath>source/version-string.h</itemPath>
@@ -46,32 +50,35 @@
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
                    projectFiles="true">
+      <itemPath>../../IbirdLoad/p33FJ128MC706A_Bootload.gld</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <logicalFolder name="imageproc-lib"
-                     displayName="imageproc-lib"
+      <logicalFolder name="imageproc-lib-roach"
+                     displayName="imageproc-lib-roach"
                      projectFiles="true">
-        <itemPath>../../imageproc-lib/ams-enc.c</itemPath>
-        <itemPath>../../imageproc-lib/at86rf231_driver.c</itemPath>
-        <itemPath>../../imageproc-lib/battery.c</itemPath>
-        <itemPath>../../imageproc-lib/blink.c</itemPath>
-        <itemPath>../../imageproc-lib/carray.c</itemPath>
-        <itemPath>../../imageproc-lib/dfmem.c</itemPath>
-        <itemPath>../../imageproc-lib/mac_packet.c</itemPath>
-        <itemPath>../../imageproc-lib/mpu6000.c</itemPath>
-        <itemPath>../../imageproc-lib/payload.c</itemPath>
-        <itemPath>../../imageproc-lib/ppool.c</itemPath>
-        <itemPath>../../imageproc-lib/queue.c</itemPath>
-        <itemPath>../../imageproc-lib/radio.c</itemPath>
-        <itemPath>../../imageproc-lib/sclock.c</itemPath>
-        <itemPath>../../imageproc-lib/spi_controller.c</itemPath>
-        <itemPath>../../imageproc-lib/tih.c</itemPath>
-        <itemPath>../../imageproc-lib/uart_driver.c</itemPath>
-        <itemPath>../../imageproc-lib/adc_pid.c</itemPath>
-        <itemPath>../../imageproc-lib/i2c_driver.c</itemPath>
-        <itemPath>../../imageproc-lib/init_default.c</itemPath>
+        <itemPath>../../imageproc-lib-roach/ams-enc.c</itemPath>
+        <itemPath>../../imageproc-lib-roach/at86rf231_driver.c</itemPath>
+        <itemPath>../../imageproc-lib-roach/battery.c</itemPath>
+        <itemPath>../../imageproc-lib-roach/blink.c</itemPath>
+        <itemPath>../../imageproc-lib-roach/carray.c</itemPath>
+        <itemPath>../../imageproc-lib-roach/dfmem.c</itemPath>
+        <itemPath>../../imageproc-lib-roach/mac_packet.c</itemPath>
+        <itemPath>../../imageproc-lib-roach/mpu6000.c</itemPath>
+        <itemPath>../../imageproc-lib-roach/payload.c</itemPath>
+        <itemPath>../../imageproc-lib-roach/ppool.c</itemPath>
+        <itemPath>../../imageproc-lib-roach/queue.c</itemPath>
+        <itemPath>../../imageproc-lib-roach/radio.c</itemPath>
+        <itemPath>../../imageproc-lib-roach/sclock.c</itemPath>
+        <itemPath>../../imageproc-lib-roach/spi_controller.c</itemPath>
+        <itemPath>../../imageproc-lib-roach/tih.c</itemPath>
+        <itemPath>../../imageproc-lib-roach/uart_driver.c</itemPath>
+        <itemPath>../../imageproc-lib-roach/adc_pid.c</itemPath>
+        <itemPath>../../imageproc-lib-roach/i2c_driver.c</itemPath>
+        <itemPath>../../imageproc-lib-roach/init_default.c</itemPath>
+        <itemPath>../../imageproc-lib-roach/bams.c</itemPath>
+        <itemPath>../../imageproc-lib-roach/quat.c</itemPath>
       </logicalFolder>
       <logicalFolder name="lib" displayName="lib" projectFiles="true">
         <itemPath>../lib/init.c</itemPath>
@@ -80,6 +87,8 @@
         <itemPath>../lib/tests.c</itemPath>
         <itemPath>../lib/traps.c</itemPath>
         <itemPath>../lib/telem.c</itemPath>
+        <itemPath>../lib/sync_servo.c</itemPath>
+        <itemPath>../lib/attitude.c</itemPath>
       </logicalFolder>
       <itemPath>source/cmd.c</itemPath>
       <itemPath>source/main.c</itemPath>
@@ -89,12 +98,12 @@
                    projectFiles="false">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
-    <itemPath>../../imageproc-lib/version.c</itemPath>
+    <itemPath>../../imageproc-lib-roach/version.c</itemPath>
   </logicalFolder>
   <sourceRootList>
     <Elem>.</Elem>
     <Elem>../lib</Elem>
-    <Elem>../../imageproc-lib</Elem>
+    <Elem>../../imageproc-lib-roach</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -103,10 +112,9 @@
         <developmentServer>localhost</developmentServer>
         <targetDevice>dsPIC33FJ128MC706A</targetDevice>
         <targetHeader></targetHeader>
-        <targetPluginBoard></targetPluginBoard>
-        <platformTool>PICkit3PlatformTool</platformTool>
+        <platformTool>ICD3PlatformTool</platformTool>
         <languageToolchain>XC16</languageToolchain>
-        <languageToolchainVersion>1.11</languageToolchainVersion>
+        <languageToolchainVersion>1.21</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <compileType>
@@ -128,6 +136,46 @@
         <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
       </makeCustomizationType>
+      <item path="../../imageproc-lib-roach/bams.c" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
+      </item>
+      <item path="../../imageproc-lib-roach/bams.h" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
+      </item>
+      <item path="../lib/attitude.c" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
+      </item>
+      <item path="../lib/attitude.h" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
+      </item>
       <C30>
         <property key="code-model" value="default"/>
         <property key="const-model" value="default"/>
@@ -143,8 +191,22 @@
         <property key="enable-symbols" value="true"/>
         <property key="enable-unroll-loops" value="false"/>
         <property key="extra-include-directories"
-                  value="../lib;../../imageproc-lib;source"/>
+                  value="../lib;../../imageproc-lib-roach;source"/>
         <property key="isolate-each-function" value="false"/>
+        <property key="oXC16gcc-align-arr" value="false"/>
+        <property key="oXC16gcc-cnsts-mauxflash" value="false"/>
+        <property key="oXC16gcc-data-sects" value="false"/>
+        <property key="oXC16gcc-errata" value=""/>
+        <property key="oXC16gcc-fillupper" value=""/>
+        <property key="oXC16gcc-large-aggregate" value="false"/>
+        <property key="oXC16gcc-mauxflash" value="false"/>
+        <property key="oXC16gcc-mpa-lvl" value=""/>
+        <property key="oXC16gcc-name-text-sec" value=""/>
+        <property key="oXC16gcc-near-chars" value="false"/>
+        <property key="oXC16gcc-no-isr-warn" value="false"/>
+        <property key="oXC16gcc-sfr-warn" value="false"/>
+        <property key="oXC16gcc-smar-io-lvl" value="1"/>
+        <property key="oXC16gcc-smart-io-fmt" value=""/>
         <property key="optimization-level" value="0"/>
         <property key="post-instruction-scheduling" value="default"/>
         <property key="pre-instruction-scheduling" value="default"/>
@@ -159,10 +221,10 @@
         <property key="false-conditionals" value="false"/>
         <property key="keep-locals" value="false"/>
         <property key="list-assembly" value="false"/>
-        <property key="list-file" value=""/>
         <property key="list-section-info" value="false"/>
         <property key="list-source" value="false"/>
         <property key="list-symbols" value="false"/>
+        <property key="oXC16asm-extra-opts" value=""/>
         <property key="omit-debug-dirs" value="false"/>
         <property key="omit-forms" value="false"/>
         <property key="preprocessor-macros" value=""/>
@@ -208,8 +270,13 @@
         <appendMe value="-ldsp-elf"/>
       </C30-LD>
       <C30Global>
+        <property key="fast-math" value="false"/>
+        <property key="generic-16-bit" value="false"/>
+        <property key="legacy-libc" value="false"/>
+        <property key="oXC16glb-macros" value=""/>
+        <property key="output-file-format" value="elf"/>
       </C30Global>
-      <PICkit3PlatformTool>
+      <ICD3PlatformTool>
         <property key="ADC 1" value="true"/>
         <property key="ADC 2" value="true"/>
         <property key="AutoSelectMemRanges" value="auto"/>
@@ -251,20 +318,16 @@
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
         <property key="UART 1" value="true"/>
         <property key="UART 2" value="true"/>
+        <property key="debugoptions.useswbreakpoints" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
-        <property key="memories.aux" value="false"/>
-        <property key="memories.bootflash" value="false"/>
-        <property key="memories.configurationmemory" value="false"/>
-        <property key="memories.eeprom" value="false"/>
+        <property key="memories.eeprom" value="true"/>
         <property key="memories.flashdata" value="true"/>
-        <property key="memories.id" value="false"/>
+        <property key="memories.id" value="true"/>
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.end" value="0x157ff"/>
         <property key="memories.programmemory.start" value="0x0"/>
-        <property key="poweroptions.powerenable" value="true"/>
-        <property key="programmertogo.imagename" value=""/>
+        <property key="poweroptions.powerenable" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
-        <property key="programoptions.pgmspeed" value="2"/>
         <property key="programoptions.preserveeeprom" value="false"/>
         <property key="programoptions.preserveprogramrange" value="false"/>
         <property key="programoptions.preserveprogramrange.end" value="0xff"/>
@@ -272,8 +335,8 @@
         <property key="programoptions.preserveuserid" value="false"/>
         <property key="programoptions.usehighvoltageonmclr" value="false"/>
         <property key="programoptions.uselvpprogramming" value="false"/>
-        <property key="voltagevalue" value="3.5"/>
-      </PICkit3PlatformTool>
+        <property key="voltagevalue" value="3.25"/>
+      </ICD3PlatformTool>
     </conf>
   </confs>
 </configurationDescriptor>

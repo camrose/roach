@@ -159,7 +159,7 @@ void SetupPWM(void){
                 PWM_IPCLK_SCALE16 & PWM_MOD_FREE;
    PWMCON1value = PWM_MOD1_IND & PWM_PEN1L & PWM_PEN1H &
                   PWM_MOD2_IND & PWM_PEN2L & PWM_PEN2H &
-                  PWM_MOD3_IND & PWM_PEN3L & PWM_PEN3H;
+                  PWM_MOD3_IND & PWM_PDIS3L & PWM_PDIS3H;
    PWMCON2value = PWM_SEVOPS1 & PWM_OSYNC_TCY & PWM_UEN;
    ConfigIntMCPWM(PWM_INT_DIS & PWM_FLTA_DIS_INT & PWM_FLTB_DIS_INT);
 

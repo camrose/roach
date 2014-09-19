@@ -58,7 +58,8 @@ class hallParams:
     phase = []
     telemetry = []
     repeat = []
-    def __init__(self, motorgains, duration, rightFreq, leftFreq, phase, telemetry, repeat):
+    servo = []
+    def __init__(self, motorgains, duration, rightFreq, leftFreq, phase, telemetry, repeat, servo):
         self.motorgains = motorgains
         self.duration = duration
         self.rightFreq = rightFreq
@@ -66,6 +67,7 @@ class hallParams:
         self.phase = phase
         self.telemetry = telemetry
         self.repeat = repeat
+        self.servo = servo
 
 class manueverParams:
     leadIn      = []
@@ -128,7 +130,7 @@ def settingsMenu(params, manParams):
             if len(x):
                 pwmDes = map(float,x.split(','))
             xb_send(0, command.SET_MOTOR_MODE, pack('2h', pwmDes))
-            print 'Set Duty cycle: ' pwmDes
+            print 'Set Duty cycle: ' + pwmDes
         elif keypress == 'b':
             print 'Manuever Enabled'
             manParams.useFlag = True
@@ -150,13 +152,14 @@ def settingsMenu(params, manParams):
         elif keypress == 'p':
             print 'Manuever Disabled'
             manParams.useFlag = False
-            print 'Right Leg Frequency, Left Leg Frequency, Phase (degrees): ',
+            print 'Right Leg Frequency, Left Leg Frequency, Phase (degrees), Servo (degrees): ',
             x = raw_input()
             if len(x):
                 temp = map(float,x.split(','))
             params.rightFreq = temp[0]
             params.leftFreq = temp[1]
             params.phase = temp[2] * 65536.0/360
+            params.servo = temp[3]
             setVelProfile(params, manParams, 0)
 
 def repeatMenu(params):

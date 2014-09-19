@@ -8,7 +8,7 @@ import serial
 from callbackFunc import xbee_received
 import shared
 
-DEST_ADDR = '\x20\x52'
+DEST_ADDR = '\x10\x23'
 imudata_file_name = 'imudata.txt'
 statedata_file_name = 'statedata.txt'
 dutycycle_file_name = 'dutycycle.txt'
@@ -57,6 +57,7 @@ def main():
     
 
     motorgains = [200,2,0,2,0,    200,2,0,2,0]
+    xb_send(0,command.WHO_AM_I,pack('B',0))
     while not(shared.motor_gains_set):
         print "Setting motor gains. Packet:",count
         count = count + 1
@@ -70,6 +71,9 @@ def main():
         
     throttle = [0,0]
     tinc = 25;
+    
+    servo = 0.0
+    sinc = 0.1
 
     #blank out any keypresses leading in...
     while msvcrt.kbhit():
@@ -93,17 +97,31 @@ def main():
             throttle[0] = 0
         elif keypress == 'm':
             menu()
+        elif keypress == 't':
+            servo += sinc
+            xb_send(0, command.SET_SERVO, pack('f',servo))
+        elif keypress == 'g':
+            servo -= sinc
+            xb_send(0, command.SET_SERVO, pack('f',servo))
+        elif keypress == 'b':
+            xb_send(0, command.START_SERVO, pack('h',0))
+        elif keypress == 'p':
+            xb_send(0,command.WHO_AM_I,pack('B',0))
+        elif keypress == 'n':
+            go_now = [3000,3000,3000]
+            xb_send(0,command.SET_THRUST_OPEN_LOOP,pack('3h',*go_now))
         elif (keypress == 'q') or (ord(keypress) == 26):
             print "Exit."
             xb.halt()
             ser.close()
             sys.exit(0)
 
-        throttle = [0 if t<0 else t for t in throttle]
-        thrust = [throttle[0], 1000, throttle[1], 1000, 0]
-        xb_send(0, command.SET_THRUST_CLOSED_LOOP, pack('5h',*thrust))
-        #xb_send(0,command.SET_THRUST_OPEN_LOOP,pack('2h',*throttle))
-        print "Throttle = ",throttle
+        #throttle = [0 if t<0 else t for t in throttle]
+        #thrust = [throttle[0], 1000, throttle[1], 1000, 0]
+        #go_now = [throttle[0],throttle[1],1000]
+        ##xb_send(0, command.SET_THRUST_CLOSED_LOOP, pack('5h',*thrust))
+        #xb_send(0,command.SET_THRUST_OPEN_LOOP,pack('3h',*go_now))
+        #print "Throttle = ",throttle
         time.sleep(0.1)
 
 #Provide a try-except over the whole main function

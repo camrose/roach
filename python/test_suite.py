@@ -51,7 +51,7 @@ OFF = 0
 class TestSuite():
     '''Class representing the ImageProc test suite'''
 
-    def __init__(self, dev_name, baud_rate=230400, dest_addr='\xff\xff'):
+    def __init__(self, dev_name, baud_rate=57600, dest_addr='\xff\xff'):
         '''
         Description:
         Initiate the 802.15.4 connection and configure the target.
