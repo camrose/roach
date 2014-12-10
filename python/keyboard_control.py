@@ -99,10 +99,10 @@ def main():
             menu()
         elif keypress == 't':
             servo += sinc
-            xb_send(0, command.SET_SERVO, pack('f',servo))
+            xb_send(0, command.SET_SERVO, pack('f',-1.0))
         elif keypress == 'g':
             servo -= sinc
-            xb_send(0, command.SET_SERVO, pack('f',servo))
+            xb_send(0, command.SET_SERVO, pack('f',1.0))
         elif keypress == 'b':
             xb_send(0, command.START_SERVO, pack('h',0))
         elif keypress == 'p':
