@@ -29,7 +29,7 @@ void SetupADC(void)
 //    AD1CON3bits.SAMC = 0b00001; //Auto sampling clock period is one Tad
     AD1CON3bits.ADCS = 0b00000010; // Each TAD is 3 Tcy
 
-    AD1PCFGL = 0xFFF0;          //Enable AN0 - AN3 as analog inputs
+    AD1PCFGL = 0xFFFF;          //Enable AN0 - AN3 as analog inputs
 
     AD1CHS0bits.CH0SA = 0b00001;      //Select AN1 for CH0 +ve input
     AD1CHS0bits.CH0NA = 0b00000;      //Select Vref- for CH0 -ve input

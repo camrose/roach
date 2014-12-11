@@ -29,6 +29,8 @@
         <itemPath>../../imageproc-lib-roach/init_default.h</itemPath>
         <itemPath>../../imageproc-lib-roach/bams.h</itemPath>
         <itemPath>../../imageproc-lib-roach/quat.h</itemPath>
+        <itemPath>../../imageproc-lib-roach/adc_line.h</itemPath>
+        <itemPath>../../imageproc-lib-roach/counter.h</itemPath>
       </logicalFolder>
       <logicalFolder name="lib" displayName="lib" projectFiles="true">
         <itemPath>../lib/cmd_const.h</itemPath>
@@ -42,6 +44,7 @@
         <itemPath>../lib/vr-telem.h</itemPath>
         <itemPath>../lib/sync_servo.h</itemPath>
         <itemPath>../lib/attitude.h</itemPath>
+        <itemPath>../lib/line_sensor.h</itemPath>
       </logicalFolder>
       <itemPath>source/cmd.h</itemPath>
       <itemPath>source/version-string.h</itemPath>
@@ -79,6 +82,8 @@
         <itemPath>../../imageproc-lib-roach/init_default.c</itemPath>
         <itemPath>../../imageproc-lib-roach/bams.c</itemPath>
         <itemPath>../../imageproc-lib-roach/quat.c</itemPath>
+        <itemPath>../../imageproc-lib-roach/adc_line.c</itemPath>
+        <itemPath>../../imageproc-lib-roach/counter.c</itemPath>
       </logicalFolder>
       <logicalFolder name="lib" displayName="lib" projectFiles="true">
         <itemPath>../lib/init.c</itemPath>
@@ -89,6 +94,7 @@
         <itemPath>../lib/telem.c</itemPath>
         <itemPath>../lib/sync_servo.c</itemPath>
         <itemPath>../lib/attitude.c</itemPath>
+        <itemPath>../lib/line_sensor.c</itemPath>
       </logicalFolder>
       <itemPath>source/cmd.c</itemPath>
       <itemPath>source/main.c</itemPath>
