@@ -1,3 +1,5 @@
+from vidStreamer import VideoStreamer
+
 DEST_ADDR = '\x10\x23'
 xb = []
 ser = []
@@ -35,6 +37,10 @@ steeringGains = "NOT SET"
 runtime = 0
 numSamples = 0
 moveq = "NOT SET"
+curr_line_dat = []
+curr_line_type = 0
+
+streamer = None
 
 robotQueried = False
 maxQueries = 8

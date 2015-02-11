@@ -57,8 +57,10 @@
 // ==== CONSTANTS ===========================================
 
 #define FCY                     (40000000)
-#define LS_CLOCK                (_RB4)
-#define LS_SI                   (_RB3)
+//#define LS_CLOCK                (_RB4)
+//#define LS_SI                   (_LATB3)
+#define LS_SI                   (_RB4)
+#define LS_CLOCK                (_LATB3)
 #define LOW                     (0)
 #define HIGH                    (1)
 #define MAX_LINE                (4000)
@@ -108,7 +110,7 @@ void lsSetup(LineCam frames, unsigned int num_frames, unsigned int fs) {
     LS_CLOCK = LOW;
     LS_SI = LOW;
     cnt = 0;
-    max_cnt = 501;
+    max_cnt = 1001;
     unsigned int i;
     current_frame = NULL;
 
@@ -296,8 +298,9 @@ void __attribute__((interrupt, no_auto_psv)) _T7Interrupt(void) {
                 if(current_frame == NULL) { return; }
 
                 line = adcGetLine();
+                //line = 0;
 
-                current_frame->pixels[px_num] = (unsigned char)(255*((float)line/4000.0));
+                current_frame->pixels[px_num] = (unsigned char)(255*((float)line/1200.0));
                 cntrIncrement(px_counter);
             } else if (px_num == 129) {
                 cntrIncrement(px_counter);
@@ -332,11 +335,11 @@ void setupTimer7(unsigned int frequency) {
     con_reg =     T7_ON &
     T7_IDLE_CON &
     T7_GATE_OFF &
-    T7_PS_1_1 &
+    T7_PS_1_8 &
     T7_SOURCE_INT;
 
     // period value = Fcy/(prescale*Ftimer)
-    period = FCY/(frequency);
+    period = FCY/(8*frequency);
 
     OpenTimer7(con_reg, period);
     ConfigIntTimer7(T7_INT_PRIOR_6 & T7_INT_OFF);

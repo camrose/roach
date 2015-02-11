@@ -23,6 +23,11 @@
 #define CMD_SET_MOTOR_MODE      	0x94
 #define CMD_SET_SERVO               0x95
 #define CMD_TOGGLE_SERVO            0x96
+
+#define CMD_LS_START_CAPTURE            0x5B      // Start line sensor clock
+#define CMD_LINE_FRAME_RESPONSE         0x5C      //Get line cam line
+#define CMD_LINE_FRAME_REQUEST          0x5D
+#define CMD_LINE_SET_EXPOSURE           0x5E
 // Redefine
 
 void cmdSetup(void);

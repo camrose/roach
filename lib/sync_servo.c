@@ -116,7 +116,7 @@ void __attribute__((interrupt, no_auto_psv)) _T4Interrupt(void) {
 
     if(pin_is_high) {
         
-        SERVO_A = 0; // End pulse
+        //SERVO_A = 0; // End pulse
         pin_is_high = 0;
         
         WriteTimer4(0); // Wait until next pulse start
@@ -127,7 +127,7 @@ void __attribute__((interrupt, no_auto_psv)) _T4Interrupt(void) {
         WriteTimer4(0);
         PR4 = pulse_length;
         
-        SERVO_A = 1; // Begin pulse
+        //SERVO_A = 1; // Begin pulse
         pin_is_high = 1;
     }
 

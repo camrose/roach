@@ -4,6 +4,7 @@ import time
 
 import shared
 
+
 #Dictionary of packet formats, for unpack()
 pktFormat = { \
     command.TX_DUTY_CYCLE:          'l3f', \
@@ -29,6 +30,9 @@ pktFormat = { \
                
 #XBee callback function, called every time a packet is recieved
 def xbee_received(packet):
+    
+    global streamer
+    
     rf_data = packet.get('rf_data')
     #rssi = ord(packet.get('rssi'))
     #(src_addr, ) = unpack('H', packet.get('source_addr'))
@@ -44,13 +48,18 @@ def xbee_received(packet):
     # can be done
     shared.last_packet_time = time.time()
     
-    try:
-        pattern = pktFormat[type]
-    except KeyError:
-        print "Got bad packet type: ",type
-        return
+    if type != command.LINE_FRAME_RESPONSE:
+        try:
+            pattern = pktFormat[type]
+        except KeyError:
+            print "Got bad packet type: ",type
+            return
     
     try:
+        if type == command.LINE_FRAME_RESPONSE:
+            shared.streamer.processPacket(type,data)
+            shared.streamer.updateImage()
+            #print "got datum:",data
         # GET_IMU_DATA
         if type == command.GET_IMU_DATA:
             datum = unpack(pattern, data)

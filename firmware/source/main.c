@@ -39,8 +39,13 @@
 #include "ppool.h"
 #include "carray.h"
 #include "sync_servo.h"
+#include "adc_line.h"
+#include "line_sensor.h"
 
 #include <stdlib.h>
+
+#define NUM_CAM_FRAMES              (2)         // Number of line sensor frames in queue
+#define LS_FCY                      (6000)         // 3000 Hz (actual freq is half this value)
 
 static Payload rx_payload;
 static MacPacket rx_packet;
@@ -50,8 +55,13 @@ volatile MacPacket uart_tx_packet;
 volatile unsigned char uart_tx_flag;
 
 volatile CircArray fun_queue;
+static LineCamStruct cam_frames[NUM_CAM_FRAMES];
 
 int main() {
+
+    unsigned long now;
+    unsigned int phase;
+    unsigned char led_state;   
 
     // Processor Initialization
     SetupClock();
@@ -79,14 +89,16 @@ int main() {
 
     // Need delay for encoders to be ready
     delay_ms(100);
-    amsEncoderSetup();
+    //amsEncoderSetup();
     mpuSetup(1);
     tiHSetup();
     dfmemSetup(0);
     telemSetup();
+    lsSetup(cam_frames, NUM_CAM_FRAMES, LS_FCY);
     adcSetup();
+    adcLineSetup();
     pidSetup();
-    servoSetup();
+    //servoSetup();
 
 
 
@@ -101,7 +113,6 @@ int main() {
             uartSendPacket(uart_tx_packet);
             uart_tx_flag = 0;
         }
-
 
         // move received packets to function queue
         while (!radioRxQueueEmpty()) {
@@ -127,6 +138,17 @@ int main() {
                ppoolReturnFullPacket(rx_packet);
             }
         }
+//        now = sclockGetMillis();
+//        phase = now % 2000;
+//
+//        // Blink LED at 1 Hz
+//        if(phase > 1000 && led_state == 0) {
+//            LED_2 = 1;
+//            led_state = 1;
+//        } else if(phase < 1000 && led_state == 1) {
+//            LED_2 = 0;
+//            led_state = 0;
+//        }
     }
     return 0;
 }

@@ -72,5 +72,9 @@ SET_PHASE               =   0x93
 SET_MOTOR_MODE      =   0x94
 SET_SERVO               =   0x95
 START_SERVO             =   0x96
+LS_START = 0x5B
+LINE_FRAME_RESPONSE =  0x5C
+LINE_FRAME_REQUEST =  0x5D
+LINE_SET_EXPOSURE =  0x5E
 
 # CMD values of 0xF0(240) - 0xFF(255) are reserved for future use

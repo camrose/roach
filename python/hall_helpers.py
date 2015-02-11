@@ -342,7 +342,19 @@ def getDstAddrString():
     return hex(256* ord(shared.DEST_ADDR[0])+ ord(shared.DEST_ADDR[1]))
     
 def sendWhoAmI():
-    xb_send(0, command.WHO_AM_I, "Robot Echo") 
+    xb_send(0, command.WHO_AM_I, "Robot Echo")
+    
+def startLS(flag):
+    print "Turning line sensor: " + str(type(flag))
+    xb_send(0, command.LS_START, pack('b', flag))
+
+def requestLineFrames():
+    print "Requesting line sensor frame"
+    xb_send(0, command.LINE_FRAME_REQUEST, pack('H', 0))
+        
+def setExposure(et, fs):
+    print "Setting line sensor exposure time to exp: " + str(et) + ", freq: " + str(fs)
+    xb_send(0, command.LINE_SET_EXPOSURE, pack('HH', et, fs))
 
 def flashReadback(numSamples, params, manParams):
     delay = 0.006

@@ -139,7 +139,7 @@ unsigned int PTPERvalue=4999;
 void SetupPWM(void){
 
    LATB  = 0x0000;
-   TRISB = 0b0000011011111011;
+   TRISB = 0b0000011011100011;
 
    PORTBbits.RB8 = 0;
    PORTBbits.RB11 = 0;

@@ -21,6 +21,7 @@
 #include "carray.h"
 #include "telem.h"
 #include "sync_servo.h"
+#include "line_sensor.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -58,6 +59,11 @@ static unsigned char cmdStartTimedRun(unsigned char type, unsigned char status, 
 static unsigned char cmdStartTelemetry(unsigned char type, unsigned char status, unsigned char length, unsigned char *frame);
 static unsigned char cmdEraseSectors(unsigned char type, unsigned char status, unsigned char length, unsigned char *frame);
 static unsigned char cmdFlashReadback(unsigned char type, unsigned char status, unsigned char length, unsigned char *frame);
+
+static unsigned char cmdLsStartCapture(unsigned char type, unsigned char status, unsigned char length, unsigned char *frame);
+static unsigned char cmdGetLineFrame(unsigned char type, unsigned char status, unsigned char length, unsigned char *frame);
+static unsigned char cmdLsSetExposure(unsigned char type, unsigned char status, unsigned char length, unsigned char *frame);
+
 /*-----------------------------------------------------------------------------
  *          Public functions
 -----------------------------------------------------------------------------*/
@@ -87,6 +93,10 @@ void cmdSetup(void) {
     cmd_func[CMD_PID_STOP_MOTORS] = &cmdPIDStopMotors;
     cmd_func[CMD_TOGGLE_SERVO] = &cmdToggleServo;
     cmd_func[CMD_SET_SERVO] = &cmdSetServo;
+
+    cmd_func[CMD_LS_START_CAPTURE] = &cmdLsStartCapture;
+    cmd_func[CMD_LINE_FRAME_REQUEST] = &cmdGetLineFrame;
+    cmd_func[CMD_LINE_SET_EXPOSURE] = &cmdLsSetExposure;
 
 }
 
@@ -333,6 +343,61 @@ static unsigned char cmdSetServo(unsigned char type, unsigned char status, unsig
     return 1;
 }
 
+
+static unsigned char cmdLsStartCapture(unsigned char type, unsigned char status, unsigned char length, unsigned char *frame) {
+    unsigned char flag = *(frame);
+    lsStartCapture(flag);
+    return 1;
+}
+
+static unsigned char cmdLsSetExposure(unsigned char type, unsigned char status, unsigned char length, unsigned char *frame) {
+    unsigned int* data = (unsigned int *)(frame);
+    lsSetExposure(data[0], data[1]);
+    return 1;
+}
+
+static unsigned char cmdGetLineFrame(unsigned char type, unsigned char status, unsigned char length, unsigned char *frame) {
+
+    unsigned int width, temp;
+    unsigned int to_send, block_size = 75;
+    MacPacket response;
+    Payload pld;
+    unsigned char *row;
+
+    width = 128;
+    to_send = 128;
+
+    LineCam frame_cam = NULL;
+    while(frame_cam == NULL) {
+        frame_cam = lsGetFrame();
+    }
+    row = (frame_cam->pixels);
+    while(to_send > 0) {
+        temp = (block_size < to_send) ? block_size : to_send;
+        response = radioRequestPacket(temp + 6);
+        if(response == NULL) { continue; }
+        pld = macGetPayload(response);
+        paySetType(pld, CMD_LINE_FRAME_RESPONSE);
+        paySetStatus(pld, 0);
+        macSetDestAddr(response, RADIO_DEST_ADDR);
+        macSetDestPan(response, RADIO_PAN_ID);
+        temp = frame_cam->frame_num;
+        paySetData(pld, 2, (unsigned char *)&temp);
+        temp = 0;
+        payAppendData(pld, 2, 2, (unsigned char*)&temp);
+        temp = width - to_send;
+        payAppendData(pld, 4, 2, (unsigned char*)&temp);
+        temp = (block_size < to_send) ? block_size : to_send;
+        payAppendData(pld, 6, temp, row + (width - to_send));
+
+        while(!radioEnqueueTxPacket(response));
+
+        to_send = to_send - temp;
+
+    }
+    lsReturnFrame(frame_cam);
+    return 1;
+}
 
 void cmdError() {
     int i;
