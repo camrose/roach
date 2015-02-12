@@ -108,7 +108,7 @@ def main():
         elif keypress == 'p':
             xb_send(0,command.WHO_AM_I,pack('B',0))
         elif keypress == 'n':
-            go_now = [3000,3000,3000]
+            go_now = [0,-3000,20000]
             xb_send(0,command.SET_THRUST_OPEN_LOOP,pack('3h',*go_now))
         elif (keypress == 'q') or (ord(keypress) == 26):
             print "Exit."
